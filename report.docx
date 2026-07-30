@@ -1,0 +1,55 @@
+This application is a simple health management website developed using Node.js, Express, EJS and MySQL. Users can register, log in and manage health-related information stored in a database. The application includes several pages such as the home page, search page and forms for adding records. The aim of the project is to demonstrate the web development techniques learned throughout the Dynamic Web Applications module.
+
+Architecture
+
+The application follows a simple client-server architecture.
+
+Front end: HTML pages generated with EJS templates and CSS.
+Application tier: Node.js and Express handle routing, business logic and database communication.
+Data tier: MySQL stores users and application data.
+
+The application uses the mysql2 package to communicate with the database and Express Session to manage user sessions.
+
+Data Model
+
+The database is called health.
+
+It contains tables for storing user accounts and health-related information. Primary keys uniquely identify each record while foreign keys are used where relationships exist between users and their data.
+
+The database can be recreated using create_db.sql, while insert_test_data.sql inserts the required sample data.
+
+User Functionality
+
+The application allows users to:
+
+View the home page.
+Register a new account.
+Log into the application.
+Search stored records.
+Add new health information.
+Display information retrieved from the MySQL database.
+
+The application uses forms to collect user input and stores data in MySQL. Session management is used so users remain logged in while browsing the site.
+
+Advanced Techniques
+
+The application includes several techniques introduced during the module, including:
+
+Password hashing using bcrypt.
+Session-based authentication.
+Input validation using express-validator.
+Environment variables managed with dotenv.
+Database communication using mysql2.
+
+Difficulties Encountered
+The most difficult part of this assignment was deploying the application to the Goldsmiths virtual machine.
+
+Developing the application locally was much easier because I could immediately test changes and debug my code. However, configuring the remote server environment was much more challenging than expected. I spent a large amount of time trying to configure Node.js, MySQL, environment variables and deployment settings correctly.
+
+During deployment I experienced several problems, including database authentication errors and server configuration issues. These problems made it difficult to determine whether an error was caused by my own code or by the virtual machine configuration. I also lost a significant amount of development time troubleshooting the deployment instead of improving the application itself.
+
+Although the deployment process was frustrating, it helped me better understand how web applications are configured and deployed outside a local development environment. I also learned more about database configuration, environment variables and server management.
+
+AI Declaration
+
+AI tools were used to assist with understanding deployment steps, debugging server configuration issues, checking code syntax and improving the clarity of this report. All application design, implementation decisions and final testing were completed by the author.
