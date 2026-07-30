@@ -1,0 +1,69 @@
+<%- include('partials/header', {
+    title: 'Add Workout',
+    loggedIn: loggedIn
+}) %>
+
+<section class="form-card">
+    <h1>Add Workout</h1>
+
+    <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+    <% } %>
+
+    <form action="/workouts/add" method="POST">
+        <label for="exercise_name">Exercise Name</label>
+        <input
+            id="exercise_name"
+            type="text"
+            name="exercise_name"
+            required
+        >
+
+        <label for="workout_type">Workout Type</label>
+        <select id="workout_type" name="workout_type" required>
+            <option value="">Choose a type</option>
+            <option value="Cardio">Cardio</option>
+            <option value="Strength">Strength</option>
+            <option value="Flexibility">Flexibility</option>
+            <option value="Sport">Sport</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="duration">Duration in Minutes</label>
+        <input
+            id="duration"
+            type="number"
+            name="duration"
+            min="1"
+            required
+        >
+
+        <label for="calories">Calories</label>
+        <input
+            id="calories"
+            type="number"
+            name="calories"
+            min="0"
+            value="0"
+        >
+
+        <label for="workout_date">Workout Date</label>
+        <input
+            id="workout_date"
+            type="date"
+            name="workout_date"
+            required
+        >
+
+        <label for="notes">Notes</label>
+        <textarea
+            id="notes"
+            name="notes"
+            rows="4"
+        ></textarea>
+
+        <button class="button" type="submit">Save Workout</button>
+    </form>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,70 @@
+<%- include('partials/header', {
+    title: 'Search',
+    loggedIn: loggedIn
+}) %>
+
+<section class="page-header">
+    <h1>Search Workouts</h1>
+    <p>Search your workout records by exercise name or workout type.</p>
+</section>
+
+<section class="form-card">
+    <form action="/search" method="GET">
+        <label for="keyword">Search Keyword</label>
+
+        <input
+            id="keyword"
+            type="text"
+            name="keyword"
+            value="<%= keyword || '' %>"
+            placeholder="For example: Run or Cardio"
+        >
+
+        <button class="button" type="submit">Search</button>
+    </form>
+</section>
+
+<% if (searched) { %>
+    <section class="page-header">
+        <h2>Search Results</h2>
+        <p><%= workouts.length %> record(s) found.</p>
+    </section>
+
+    <% if (workouts.length === 0) { %>
+        <section class="card">
+            <p>No matching workout records were found.</p>
+        </section>
+    <% } else { %>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Type</th>
+                        <th>Duration</th>
+                        <th>Calories</th>
+                        <th>Date</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% workouts.forEach(function (workout) { %>
+                        <tr>
+                            <td><%= workout.exercise_name %></td>
+                            <td><%= workout.workout_type %></td>
+                            <td><%= workout.duration %> minutes</td>
+                            <td><%= workout.calories %></td>
+                            <td>
+                                <%= new Date(workout.workout_date).toLocaleDateString('en-GB') %>
+                            </td>
+                            <td><%= workout.notes || '-' %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+<% } %>
+
+<%- include('partials/footer') %>

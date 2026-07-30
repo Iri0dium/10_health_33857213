@@ -1,0 +1,85 @@
+<%- include('partials/header', {
+    title: 'Dashboard',
+    loggedIn: loggedIn
+}) %>
+
+<section class="page-header">
+    <h1>Dashboard</h1>
+    <p>Welcome, <strong><%= username %></strong>.</p>
+</section>
+
+<section class="stats-grid">
+    <article class="stat-card">
+        <h2><%= statistics.total_workouts %></h2>
+        <p>Total Workouts</p>
+    </article>
+
+    <article class="stat-card">
+        <h2><%= statistics.total_minutes %></h2>
+        <p>Total Minutes</p>
+    </article>
+
+    <article class="stat-card">
+        <h2><%= statistics.total_calories %></h2>
+        <p>Total Calories</p>
+    </article>
+</section>
+
+<section class="page-header page-header-row">
+    <div>
+        <h2>Recent Workouts</h2>
+        <p>Your five most recent workout records.</p>
+    </div>
+
+    <a class="button" href="/workouts/add">Add Workout</a>
+</section>
+
+<% if (recentWorkouts.length === 0) { %>
+    <section class="card">
+        <p>No workout records found.</p>
+    </section>
+<% } else { %>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Type</th>
+                    <th>Duration</th>
+                    <th>Calories</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% recentWorkouts.forEach(function (workout) { %>
+                    <tr>
+                        <td><%= workout.exercise_name %></td>
+                        <td><%= workout.workout_type %></td>
+                        <td><%= workout.duration %> minutes</td>
+                        <td><%= workout.calories %></td>
+                        <td>
+                            <%= new Date(workout.workout_date).toLocaleDateString('en-GB') %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+<% } %>
+
+<section class="card-grid dashboard-links">
+    <article class="card">
+        <h2>All Workouts</h2>
+        <p>View, edit and delete your workout records.</p>
+        <a class="button" href="/workouts">View Workouts</a>
+    </article>
+
+    <article class="card">
+        <h2>Search</h2>
+        <p>Search records by exercise name or workout type.</p>
+        <a class="button" href="/search">Search Records</a>
+    </article>
+</section>
+
+<%- include('partials/footer') %>

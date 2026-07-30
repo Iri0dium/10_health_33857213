@@ -1,0 +1,34 @@
+<%- include('partials/header', {
+    title: 'Login',
+    loggedIn: loggedIn
+}) %>
+
+<section class="form-card">
+    <h1>Login</h1>
+
+    <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST">
+        <label for="username">Username</label>
+        <input
+            id="username"
+            type="text"
+            name="username"
+            required
+        >
+
+        <label for="password">Password</label>
+        <input
+            id="password"
+            type="password"
+            name="password"
+            required
+        >
+
+        <button class="button" type="submit">Login</button>
+    </form>
+</section>
+
+<%- include('partials/footer') %>

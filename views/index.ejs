@@ -1,0 +1,94 @@
+<%- include('partials/header', {
+    title: 'Home',
+    loggedIn: loggedIn
+}) %>
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">YOUR PERSONAL FITNESS DIARY</p>
+
+        <h1>Small workouts still count.</h1>
+
+        <p class="hero-text">
+            Record your activities, keep an eye on your progress
+            and build a healthier routine one workout at a time.
+        </p>
+
+        <div class="hero-actions">
+            <% if (loggedIn) { %>
+                <a class="button" href="/dashboard">
+                    View My Progress
+                </a>
+
+                <a class="secondary-button" href="/workouts/add">
+                    Add a Workout
+                </a>
+            <% } else { %>
+                <a class="button" href="/register">
+                    Create an Account
+                </a>
+
+                <a class="secondary-button" href="/login">
+                    Login
+                </a>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="activity-circle">
+            <span class="activity-number">30</span>
+            <span>minutes today</span>
+        </div>
+
+        <div class="floating-note note-one">
+            Keep moving
+        </div>
+
+        <div class="floating-note note-two">
+            One step at a time
+        </div>
+    </div>
+</section>
+
+<section class="section-heading">
+    <p class="eyebrow">WHAT YOU CAN DO</p>
+    <h2>A simple place for your fitness records</h2>
+</section>
+
+<section class="card-grid">
+    <article class="card feature-card">
+        <div class="feature-icon">01</div>
+        <h2>Record Activities</h2>
+        <p>
+            Save the exercise name, workout type, duration,
+            calories, date and personal notes.
+        </p>
+    </article>
+
+    <article class="card feature-card">
+        <div class="feature-icon">02</div>
+        <h2>Find Past Workouts</h2>
+        <p>
+            Search the MySQL database using an exercise name
+            or workout category.
+        </p>
+    </article>
+
+    <article class="card feature-card">
+        <div class="feature-icon">03</div>
+        <h2>Review Progress</h2>
+        <p>
+            See your total workouts, exercise minutes,
+            calories and most recent activities.
+        </p>
+    </article>
+</section>
+
+<section class="quote-card">
+    <p>
+        “You do not need a perfect workout. You only need to begin.”
+    </p>
+</section>
+
+<%- include('partials/footer') %> 

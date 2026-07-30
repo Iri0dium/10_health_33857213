@@ -1,0 +1,55 @@
+<%- include('partials/header', {
+    title: 'Register',
+    loggedIn: loggedIn
+}) %>
+
+<section class="form-card">
+    <h1>Create Account</h1>
+
+    <% if (errors && errors.length > 0) { %>
+        <div class="error-message">
+            <% errors.forEach(function (error) { %>
+                <p><%= error.msg %></p>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <form action="/register" method="POST">
+        <label for="username">Username</label>
+        <input
+            id="username"
+            type="text"
+            name="username"
+            value="<%= formData.username || '' %>"
+            required
+        >
+
+        <label for="email">Email</label>
+        <input
+            id="email"
+            type="email"
+            name="email"
+            value="<%= formData.email || '' %>"
+            required
+        >
+
+        <label for="password">Password</label>
+        <input
+            id="password"
+            type="password"
+            name="password"
+            required
+        >
+
+        <p class="help-text">
+            Use at least 8 characters with lowercase, uppercase,
+            number and special character.
+        </p>
+
+        <button class="button" type="submit">Register</button>
+    </form>
+
+    <p>Already registered? <a href="/login">Login here</a>.</p>
+</section>
+
+<%- include('partials/footer') %>

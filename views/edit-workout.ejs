@@ -1,0 +1,71 @@
+<%- include('partials/header', {
+    title: 'Edit Workout',
+    loggedIn: loggedIn
+}) %>
+
+<section class="form-card">
+    <h1>Edit Workout</h1>
+
+    <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+    <% } %>
+
+    <form action="/workouts/edit/<%= workout.id %>" method="POST">
+        <label for="exercise_name">Exercise Name</label>
+        <input
+            id="exercise_name"
+            type="text"
+            name="exercise_name"
+            value="<%= workout.exercise_name %>"
+            required
+        >
+
+        <label for="workout_type">Workout Type</label>
+        <select id="workout_type" name="workout_type" required>
+            <option value="Cardio" <%= workout.workout_type === 'Cardio' ? 'selected' : '' %>>Cardio</option>
+            <option value="Strength" <%= workout.workout_type === 'Strength' ? 'selected' : '' %>>Strength</option>
+            <option value="Flexibility" <%= workout.workout_type === 'Flexibility' ? 'selected' : '' %>>Flexibility</option>
+            <option value="Sport" <%= workout.workout_type === 'Sport' ? 'selected' : '' %>>Sport</option>
+            <option value="Other" <%= workout.workout_type === 'Other' ? 'selected' : '' %>>Other</option>
+        </select>
+
+        <label for="duration">Duration in Minutes</label>
+        <input
+            id="duration"
+            type="number"
+            name="duration"
+            min="1"
+            value="<%= workout.duration %>"
+            required
+        >
+
+        <label for="calories">Calories</label>
+        <input
+            id="calories"
+            type="number"
+            name="calories"
+            min="0"
+            value="<%= workout.calories %>"
+        >
+
+        <label for="workout_date">Workout Date</label>
+        <input
+            id="workout_date"
+            type="date"
+            name="workout_date"
+            value="<%= new Date(workout.workout_date).toISOString().split('T')[0] %>"
+            required
+        >
+
+        <label for="notes">Notes</label>
+        <textarea
+            id="notes"
+            name="notes"
+            rows="4"
+        ><%= workout.notes || '' %></textarea>
+
+        <button class="button" type="submit">Update Workout</button>
+    </form>
+</section>
+
+<%- include('partials/footer') %>

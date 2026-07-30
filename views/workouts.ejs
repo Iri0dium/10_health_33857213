@@ -1,0 +1,65 @@
+<%- include('partials/header', {
+    title: 'Workouts',
+    loggedIn: loggedIn
+}) %>
+
+<section class="page-header page-header-row">
+    <div>
+        <h1>My Workouts</h1>
+        <p>View and manage your fitness records.</p>
+    </div>
+
+    <a class="button" href="/workouts/add">Add Workout</a>
+</section>
+
+<% if (workouts.length === 0) { %>
+    <section class="card">
+        <p>No workout records found.</p>
+    </section>
+<% } else { %>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercise</th>
+                    <th>Type</th>
+                    <th>Duration</th>
+                    <th>Calories</th>
+                    <th>Date</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% workouts.forEach(function (workout) { %>
+                    <tr>
+                        <td><%= workout.exercise_name %></td>
+                        <td><%= workout.workout_type %></td>
+                        <td><%= workout.duration %> minutes</td>
+                        <td><%= workout.calories %></td>
+                        <td>
+                            <%= new Date(workout.workout_date).toLocaleDateString('en-GB') %>
+                        </td>
+                        <td><%= workout.notes || '-' %></td>
+                        <td class="actions">
+                            <a href="/workouts/edit/<%= workout.id %>">Edit</a>
+
+                            <form
+                                action="/workouts/delete/<%= workout.id %>"
+                                method="POST"
+                                onsubmit="return confirm('Delete this workout?');"
+                            >
+                                <button class="link-button danger" type="submit">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+<% } %>
+
+<%- include('partials/footer') %>
